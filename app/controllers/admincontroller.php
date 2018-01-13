@@ -103,6 +103,20 @@ class AdminController extends AbstractController
 		}
 	}
 
+    public function RcommentAction()
+    {
+        if (!isset($this->_params[0])) {
+            die("L'identifiant du post est incorrect.");
+        }
+
+        $id = $this->_params[0];
+        $comment = new CommentairesModel;
+
+        if ($comment->Reset("ID = '$id'")) {
+            header("location: " . HOST_NAME . "admin/listcommentaires");
+        }
+    }
+
 	public function AjouterpostAction()
 	{
 		$this->SetView();

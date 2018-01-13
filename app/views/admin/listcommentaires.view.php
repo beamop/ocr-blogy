@@ -50,6 +50,7 @@
                     
                     <td>
                     <a href="javascript:confirmDel(<?= $rlcom['ID'] ?>)" style="color: #fff;"><button type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button></a>
+                    <a href="javascript:confirmRes(<?= $rlcom['ID'] ?>)" style="color: #fff;"><button type="button" class="btn btn-warning"><i class="fa fa-undo" aria-hidden="true"></i></button></a>
                     <a href="<?= HOST_NAME ?>index/post/<?= $rlcom['ID_post'] ?>" target="_blank"><button type="button" class="btn btn-light"><i class="fa fa-external-link" aria-hidden="true"></i></button></a>
                     </td>
                   </tr>
@@ -77,6 +78,26 @@
       if (confirmOK) {
         window.location = "<?= HOST_NAME ?>admin/dcomment/" + $ID;
         swal("Super, le post a bien été supprimé!", {
+          icon: "success",
+        });
+      } else {
+        swal("L'opération a bien été annulée!");
+      }
+    });
+  }
+
+  function confirmRes($ID) {
+    swal({
+      title: "Êtes-vous sûr?!",
+      text: "Les signalements du commentaire seront remis à zéro.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((confirmOK) => {
+      if (confirmOK) {
+        window.location = "<?= HOST_NAME ?>admin/rcomment/" + $ID;
+        swal("Super, les signalements ont bien été retirés!", {
           icon: "success",
         });
       } else {

@@ -1,10 +1,21 @@
 <?php
-
+/**
+ * A Compatibility library with PHP 5.5's simplified password hashing API.
+ *
+ * @author Anthony Ferrara <ircmaxell@php.net>
+ * @license http://www.opensource.org/licenses/mit-license.html MIT License
+ * @copyright 2012 The Authors
+ */
 
 namespace {
 
     if (!defined('PASSWORD_BCRYPT')) {
-
+        /**
+         * PHPUnit Process isolation caches constants, but not function declarations.
+         * So we need to check if the constants are defined separately from
+         * the functions to enable supporting process isolation in userland
+         * code.
+         */
         define('PASSWORD_BCRYPT', 1);
         define('PASSWORD_DEFAULT', PASSWORD_BCRYPT);
         define('PASSWORD_BCRYPT_DEFAULT_COST', 10);
@@ -12,7 +23,15 @@ namespace {
 
     if (!function_exists('password_hash')) {
 
-
+        /**
+         * Hash the password using the specified algorithm
+         *
+         * @param string $password The password to hash
+         * @param int    $algo     The algorithm to use (Defined by PASSWORD_* constants)
+         * @param array  $options  The options for the algorithm to use
+         *
+         * @return string|false The hashed password, or false on error.
+         */
         function password_hash($password, $algo, array $options = array()) {
             if (!function_exists('crypt')) {
                 trigger_error("Crypt must be loaded for password_hash to function", E_USER_WARNING);
@@ -40,12 +59,12 @@ namespace {
                             return null;
                         }
                     }
-
+                    // The length of salt to generate
                     $raw_salt_len = 16;
-
+                    // The length required in the final serialization
                     $required_salt_len = 22;
                     $hash_format = sprintf("$2y$%02d$", $cost);
-
+                    // The expected length of the final crypt() output
                     $resultLength = 60;
                     break;
                 default:
@@ -123,7 +142,7 @@ namespace {
                 $salt_req_encoding = true;
             }
             if ($salt_req_encoding) {
-
+                // encode string with the Base64 variant used by crypt
                 $base64_digits =
                     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
                 $bcrypt64_digits =
@@ -145,7 +164,22 @@ namespace {
             return $ret;
         }
 
-
+        /**
+         * Get information about the password hash. Returns an array of the information
+         * that was used to generate the password hash.
+         *
+         * array(
+         *    'algo' => 1,
+         *    'algoName' => 'bcrypt',
+         *    'options' => array(
+         *        'cost' => PASSWORD_BCRYPT_DEFAULT_COST,
+         *    ),
+         * )
+         *
+         * @param string $hash The password hash to extract info from
+         *
+         * @return array The array of information about the hash.
+         */
         function password_get_info($hash) {
             $return = array(
                 'algo' => 0,
@@ -161,7 +195,17 @@ namespace {
             return $return;
         }
 
-
+        /**
+         * Determine if the password hash needs to be rehashed according to the options provided
+         *
+         * If the answer is true, after validating the password using password_verify, rehash it.
+         *
+         * @param string $hash    The hash to test
+         * @param int    $algo    The algorithm used for new password hashes
+         * @param array  $options The options array passed to password_hash
+         *
+         * @return boolean True if the password needs to be rehashed.
+         */
         function password_needs_rehash($hash, $algo, array $options = array()) {
             $info = password_get_info($hash);
             if ($info['algo'] !== (int) $algo) {
@@ -178,7 +222,14 @@ namespace {
             return false;
         }
 
-
+        /**
+         * Verify a password against a hash using a timing attack resistant approach
+         *
+         * @param string $password The password to verify
+         * @param string $hash     The hash to verify against
+         *
+         * @return boolean If the password matches the hash
+         */
         function password_verify($password, $hash) {
             if (!function_exists('crypt')) {
                 trigger_error("Crypt must be loaded for password_verify to function", E_USER_WARNING);
@@ -204,7 +255,18 @@ namespace PasswordCompat\binary {
 
     if (!function_exists('PasswordCompat\\binary\\_strlen')) {
 
-
+        /**
+         * Count the number of bytes in a string
+         *
+         * We cannot simply use strlen() for this, because it might be overwritten by the mbstring extension.
+         * In this case, strlen() will count the number of *characters* based on the internal encoding. A
+         * sequence of bytes might be regarded as a single multibyte character.
+         *
+         * @param string $binary_string The input string
+         *
+         * @internal
+         * @return int The number of bytes
+         */
         function _strlen($binary_string) {
             if (function_exists('mb_strlen')) {
                 return mb_strlen($binary_string, '8bit');
@@ -212,7 +274,18 @@ namespace PasswordCompat\binary {
             return strlen($binary_string);
         }
 
-
+        /**
+         * Get a substring based on byte limits
+         *
+         * @see _strlen()
+         *
+         * @param string $binary_string The input string
+         * @param int    $start
+         * @param int    $length
+         *
+         * @internal
+         * @return string The substring
+         */
         function _substr($binary_string, $start, $length) {
             if (function_exists('mb_substr')) {
                 return mb_substr($binary_string, $start, $length, '8bit');
@@ -220,7 +293,11 @@ namespace PasswordCompat\binary {
             return substr($binary_string, $start, $length);
         }
 
-
+        /**
+         * Check if current PHP version is compatible with the library
+         *
+         * @return boolean the check result
+         */
         function check() {
             static $pass = NULL;
 

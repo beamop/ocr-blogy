@@ -18,7 +18,7 @@
     <script src="<?= JS_DIR ?>sb-admin.min.js"></script>
     <script src="<?= JS_DIR ?>sb-admin-datatables.min.js"></script>
     <script src="<?= JS_DIR ?>sb-admin-charts.min.js"></script>
-    <script src="unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   </div>
 </body>

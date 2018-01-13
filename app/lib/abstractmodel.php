@@ -38,6 +38,14 @@ class AbstractModel
 		}
 	}
 
+    public static function Reset($pk)
+    {
+        $sql = 'UPDATE commentaires SET signalement=0 WHERE ' . $pk;
+        if (self::$db->query($sql)) {
+            return true;
+        }
+    }
+
 	public function Update($pk)
 	{
 		$sql = 'UPDATE ' . static::$tableName . ' SET ' . self::BuildSQLstring() . ' WHERE '.$pk;
