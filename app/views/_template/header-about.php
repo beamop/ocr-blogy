@@ -4,8 +4,8 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="site-heading">
-          <h1>À propos</h1>
-          <span class="subheading">C'est en s'oubliant qu'on parvient à être soi-même...</span>
+          <h1 class="animated fadeIn">À propos</h1>
+          <span class="subheading animated headShake">C'est en s'oubliant qu'on parvient à être soi-même...</span>
         </div>
       </div>
     </div>

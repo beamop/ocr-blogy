@@ -6,9 +6,9 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="post-heading">
-              <h1><?= htmlspecialchars($post['titre_post']) ?></h1>
+              <h1 class="animated fadeIn"><?= htmlspecialchars($post['titre_post']) ?></h1>
               <!--<h2 class="subheading"></h2>-->
-              <span class="meta">De
+              <span class="meta animated headShake">De
                 <a href="#"><?= htmlspecialchars($post['auteur_post']) ?></a>
                 le <?= $this->mySQLDateRewriting($post['date_post']) ?></span>
             </div>
