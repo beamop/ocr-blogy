@@ -1,3 +1,5 @@
+# noinspection SqlNoDataSourceInspectionForFile
+
 -- --------------------------------------------------------
 -- Hôte :                        localhost
 -- Version du serveur:           5.7.19 - MySQL Community Server (GPL)
@@ -12,11 +14,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Export de la structure de la base pour cdpmd-pj3
+-- Export de la structure de la base pour blogy-mvc
 CREATE DATABASE IF NOT EXISTS `blogy-mvc` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `blogy-mvc`;
 
--- Export de la structure de la table cdpmd-pj3. commentaires
+-- Export de la structure de la table blogy-mvc. commentaires
 CREATE TABLE IF NOT EXISTS `commentaires` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `ID_post` int(11) NOT NULL,
@@ -27,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
   KEY `ID` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Export de données de la table cdpmd-pj3.commentaires : ~2 rows (environ)
+-- Export de données de la table blogy-mvc.commentaires : ~2 rows (environ)
 /*!40000 ALTER TABLE `commentaires` DISABLE KEYS */;
 REPLACE INTO `commentaires` (`ID`, `ID_post`, `auteur`, `commentaire`, `date_commentaire`, `signalement`) VALUES
 	(1, 10, 'Henry', 'Super chapitre, merci!', '2018-01-14', '0');
@@ -37,7 +39,7 @@ REPLACE INTO `commentaires` (`ID`, `ID_post`, `auteur`, `commentaire`, `date_com
 	(3, 8, 'SÃ©bastien', 'Merci pour le chapitre!', '2018-01-15', '0');
 /*!40000 ALTER TABLE `commentaires` ENABLE KEYS */;
 
--- Export de la structure de la table cdpmd-pj3. membres
+-- Export de la structure de la table blogy-mvc. membres
 CREATE TABLE IF NOT EXISTS `membres` (
   `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -45,26 +47,26 @@ CREATE TABLE IF NOT EXISTS `membres` (
   KEY `ID` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Export de données de la table cdpmd-pj3.membres : ~0 rows (environ)
+-- Export de données de la table blogy-mvc.membres : ~0 rows (environ)
 /*!40000 ALTER TABLE `membres` DISABLE KEYS */;
 REPLACE INTO `membres` (`ID`, `email`, `pass`) VALUES
 	(1, 'j.forteroche@gmail.com', '$2y$12$Y/aYsEtjqhblddzYU3cDbub.FWDLmbsxcErU/h6iw3t4HZP7Gujbi');
 /*!40000 ALTER TABLE `membres` ENABLE KEYS */;
 
--- Export de la structure de la table cdpmd-pj3. options
+-- Export de la structure de la table blogy-mvc. options
 CREATE TABLE IF NOT EXISTS `options` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `titre_site` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   KEY `ID` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Export de données de la table cdpmd-pj3.options : ~0 rows (environ)
+-- Export de données de la table blogy-mvc.options : ~0 rows (environ)
 /*!40000 ALTER TABLE `options` DISABLE KEYS */;
 REPLACE INTO `options` (`ID`, `titre_site`) VALUES
 	(1, 'Blogy');
 /*!40000 ALTER TABLE `options` ENABLE KEYS */;
 
--- Export de la structure de la table cdpmd-pj3. posts
+-- Export de la structure de la table blogy-mvc. posts
 CREATE TABLE IF NOT EXISTS `posts` (
   `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `titre_post` varchar(50) COLLATE utf8_bin NOT NULL,
@@ -74,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   KEY `ID` (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Export de données de la table cdpmd-pj3.posts : 10 rows
+-- Export de données de la table blogy-mvc.posts : 10 rows
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
 REPLACE INTO `posts` (`ID`, `titre_post`, `contenu_post`, `auteur_post`, `date_post`) VALUES
 	(1, 'Chapitre 1', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>Cesserent positions carabines jeu aux suspendue cartouche. Va survivants cimetieres as inattendus il. Dentelees capucines epaissies ne un en. Culbutent camarades et apprendre printemps annoncait de de. Les livres poteau peuple roc epouse qui dut pointe. Un tu offrir atroce plates ah. Venu chez haut bois nord fut sait car rit. Faut la et ce vite chez ou peut vrai.</p>\r\n<p>Fin oui eut sillons oui fausser encourt station souffle. Ifs ecole vieux par trois pense porta oui. Je promptes de convient humaines ou pourtant treteaux. Magistrats poussaient infiniment ordonnance singuliers oh et descendons. Ai on meriter progres seconde va pouvons. Moi enleve vin vallee verite allons six ronfle ces. Contient on et recouvre de effarees pretends capitale posseder la. Commandant frissonner ses maintenant permission les approchait moi fanatiques.</p>\r\n<p>Ou la affreux longues epouses courent apparue souleve pu. Annoncait pouvaient divergent incapable rapportes as qu. Toi marechaux des six militaire capitaine tarderait croissent fut. De qu oh puissions il messieurs attardent uniformes mystiques certitude. Chez la vies saut je. Nul massacrer promenade cauchemar peu. Je un oh petits ni ferree enleve mirent balaye flancs.</p>\r\n<p>Selon rirez que large mes roc jet. Je on me dures heros babil qu. Le toute eu sacre he neige poing sa. Barbares dimanche ah touchera oh remporte ca. Qui menue epars non babil ils guere tours les. Pas vit bravoure trouvent une couleurs. Pourquoi collines jeunesse continue il susciter on.</p>\r\n<p>Appela ete fin crosse moi ecarta lazzis. Glisse pleine bas pas charge boules but touffe raison pic. Des monte iii decor ans crete ils. Murmure allures je encourt beffroi ensuite il geantes. Et durant eperon gloire balaye canons labour je ah. Avons ils peu oncle eux canif drape irise.</p>\r\n<p>Eux aussitot tacherai assister embrassa effarees ton galopent. Plateau nul travaux les entendu invites. Instruite ne philomene ca as signalant parlaient servantes. Chose trois mal dures ouvre ont etale vin. Tant air ont des elle pale. Cependant tangibles les perruches cuirasses bas. Au on quand noces gifle ca si court navre quand.</p>\r\n<p>Vieux art cours droit eux canon porta voila. La oh susciter ennemies epongent tu premiers pourquoi. Chaclos desolee abattre chatoie conquis ma il. Fait vous noir le pour je voir ca. Poussaient frequentes subitement ici pas bouquetins inattendus eue. Ardeur etendu eau par centre allons vin peu. Les dur bonnes gauche enfant cahots dit vif repris hideur. Morceaux ici lupanars ton toi victoire.</p>\r\n<p>Tambours le ni prennent branches nouvelle regiment. Peiner as enleve poussa titres disent la tu legion. Ifs age son coiffe sur replis devant tracer. Or treteaux ou jeunesse posseder crispent apercoit. Fins des rit jour cinq les peur abat. Posseder tu pauvrete en du feerique couleurs tonneaux. Ras non fondit palais cercle fievre pic.</p>\r\n<p>Dela de pied ii hors. Mal fin conflit content hauteur fut tendues mineurs des tapisse. Vie uns tarderait cartouche courroies qui cesserent. Sa je bondi sabre noble. Eclairs barbare par epaules non eux qui. Decor me gagne faire menue salle la.</p>\r\n<p>Enveloppes frequentes manoeuvres peu non remarquait. Conclue laisser egorger eau attache chinois ont moi par devenir. Oh etroit digues ma yeuses. Prepare on courtes et ah va surpris. Par singes genoux foi beaute autour. Une fer net sur alternent fabriques tiendrons sortaient.</p>\r\n<p>&nbsp;</p>\r\n</body>\r\n</html>', 'Jean Forteroche', '2018-01-13');
