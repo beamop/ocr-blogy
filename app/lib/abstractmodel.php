@@ -4,7 +4,7 @@ namespace siav\Lib;
 
 class AbstractModel
 {
-	public static $db; 
+	public static $db;
 
 	private function BuildSQLstring()
 	{
@@ -23,36 +23,53 @@ class AbstractModel
 
 	public function Create()
 	{
-		$sql = 'INSERT INTO ' . static::$tableName . ' SET ' . self::BuildSQLstring();
-		if (self::$db->query($sql)) {
-			$this->id = self::$db->insert_id;
-			return true;
-		}
+		$sql = self::$db->prepare('INSERT INTO ' . static::$tableName . ' SET ' . self::BuildSQLstring());
+
+		$sql->execute();
+
+        $this->id = self::$db->insert_id;
+
+        return true;
 	}
 
 	public static function Delete($pk)
 	{
-		$sql = 'DELETE FROM ' . static::$tableName . ' WHERE ' . $pk;
-		if (self::$db->query($sql)) {
-			return true;
-		}
+		$sql = self::$db->prepare('DELETE FROM ' . static::$tableName . ' WHERE ' . $pk);
+
+		$sql->execute();
+
+		return true;
 	}
 
     public static function Reset($pk)
     {
-        $sql = 'UPDATE commentaires SET signalement=0 WHERE ' . $pk;
-        if (self::$db->query($sql)) {
-            return true;
-        }
+        $sql = self::$db->prepare('UPDATE commentaires SET signalement=0 WHERE ' . $pk);
+
+        $sql->execute();
+
+        return true;
     }
 
 	public function Update($pk)
 	{
-		$sql = 'UPDATE ' . static::$tableName . ' SET ' . self::BuildSQLstring() . ' WHERE '.$pk;
-		if (self::$db->query($sql)) {
-			return true;
-		}
-	}	
+		$sql = self::$db->prepare('UPDATE ' . static::$tableName . ' SET ' . self::BuildSQLstring() . ' WHERE ' . $pk);
+
+		$sql->execute();
+
+		return true;
+	}
+
+    public function UpdateTitle()
+    {
+        $titre_site = $_POST['titre_site'];
+
+        $sql = self::$db->prepare('UPDATE options SET titre_site = :titre_site WHERE ID = 1');
+        $sql->bindValue(':titre_site', $titre_site);
+
+        $sql->execute();
+
+        return true;
+    }
 }
 
 ?>

@@ -3,8 +3,25 @@
 use siav\Lib\Database;
 use siav\Lib\FrontController;
 use siav\Lib\AbstractModel;
+use siav\Models\OptionsModel;
 
 ob_start();
+
+/**
+ * Database setup
+ * Configuration de la base de données
+ */
+
+define('DB_HOST', '127.0.0.1');
+define('DB_NAME', 'cdpmd-pj3');
+define('DB_USER', 'blogy');
+define('DB_PASSWORD', 'lolo');
+
+/**
+ * DTTC!
+ * (Don't Touch That Code!)
+ * (Ne touchez pas à ce code!)
+ */
 
 ini_set('display_errors', 1);
 
@@ -24,13 +41,6 @@ defined('VENDOR_DIR') ? null : define('VENDOR_DIR', HOST_NAME . 'vendor/');
 defined('JS_DIR') ? null : define('JS_DIR', HOST_NAME . 'js/');
 define('IMAGES_DIR', HOST_NAME . 'img/');
 
-define('TITLE', 'Blogy');
-
-define('DB_HOST', '127.0.0.1');
-define('DB_NAME', 'cdpmd-pj3');
-define('DB_USER', 'blogy');
-define('DB_PASSWORD', 'lolo');
-
 if (file_exists(APP_PATH . DS . 'lib' . DS . 'autoload.php')) {
 	require_once APP_PATH . DS . 'lib' . DS . 'autoload.php';
 }
@@ -40,6 +50,8 @@ session_start();
 $db = Database::getconnection();
 
 AbstractModel::$db = $db;
+
+define('TITLE', htmlspecialchars(OptionsModel::getTitle()));
 
 $FrontController = new FrontController;
 

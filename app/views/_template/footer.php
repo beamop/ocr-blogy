@@ -28,16 +28,22 @@
             </a>
           </li>
         </ul>
-        <p class="copyright text-muted">Copyright &copy; <?= TITLE ?> - 2017</p>
+        <p class="copyright text-muted">Copyright &copy; <?= TITLE ?> - 2017 - <a href="javascript:redirectAdmin()">Administration</a></p>
       </div>
     </div>
   </div>
 </footer>
 
 <script src="//unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="js/clean-blog.min.js"></script>
+<script src="<?= VENDOR_DIR ?>jquery/jquery.min.js"></script>
+<script src="<?= VENDOR_DIR ?>bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?= JS_DIR ?>clean-blog.min.js"></script>
+<script>
+    function redirectAdmin() {
+        window.open('/admin')
+    }
+    Turbolinks.setProgressBarDelay(0.1)
+</script>
 
 </body>
 

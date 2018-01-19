@@ -16,11 +16,10 @@ class IndexController extends AbstractController
 		$this->SetView();
 		$this->Render($this->_view);
 	}
-	
+
 	public function PostAction()
 	{
 		if (!isset($this->_params[0])) {
-		  //die("L'identifiant du post est incorrect.");
           $this->_view = VIEWS_PATH . 'notfound' . DS . 'notfound.view.php';
 		}
 
@@ -47,7 +46,7 @@ class IndexController extends AbstractController
 		    $comment->date_commentaire = date("Y-m-d");
 		    
 		    if ($comment->Create()) {
-		    	header("location: " . HOST_NAME . "index/post/" . $comment->ID_post);
+		    	header("Location: " . HOST_NAME . "index/post/" . $comment->ID_post);
 		    }
 
 		}
@@ -60,7 +59,7 @@ class IndexController extends AbstractController
 			$sql = "UPDATE commentaires SET signalement=signalement + 1 WHERE ID_post='$ID_post'";
 			$query = CommentairesModel::$db->query($sql);
 			if ($query) {
-				header("location: " . HOST_NAME . "index/post/" . $ID_post);
+				header("Location: " . HOST_NAME . "index/post/" . $ID_post);
 			}
 			
 		}

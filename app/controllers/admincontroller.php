@@ -59,7 +59,7 @@ class AdminController extends AbstractController
 		$post->contenu_post = $_POST['tcontenu'];
 
 		if ($post->Update("ID = '$idpost'")) {
-			header("location: " . HOST_NAME . "admin/listposts");
+			header("Location: " . HOST_NAME . "admin/listposts");
 		}
 	}
 
@@ -75,7 +75,7 @@ class AdminController extends AbstractController
 
 		if ($post->Delete("ID = '$id'")) {
 			$comment->Delete("ID_post = '$id'");
-			header("location: " . HOST_NAME . "admin/listposts");
+			header("Location: " . HOST_NAME . "admin/listposts");
 		}
 	}
 
@@ -99,7 +99,7 @@ class AdminController extends AbstractController
 		$comment = new CommentairesModel;
 
 		if ($comment->Delete("ID = '$id'")) {
-			header("location: " . HOST_NAME . "admin/listcommentaires");
+			header("Location: " . HOST_NAME . "admin/listcommentaires");
 		}
 	}
 
@@ -113,7 +113,7 @@ class AdminController extends AbstractController
         $comment = new CommentairesModel;
 
         if ($comment->Reset("ID = '$id'")) {
-            header("location: " . HOST_NAME . "admin/listcommentaires");
+            header("Location: " . HOST_NAME . "admin/listcommentaires");
         }
     }
 
@@ -134,10 +134,29 @@ class AdminController extends AbstractController
 			$post->date_post = date("Y-m-d");
 			
 			if ($post->Create()) {
-				header("location: " . HOST_NAME . "admin/ajouterpost");
+				header("Location: " . HOST_NAME . "admin/ajouterpost");
 			}
 		}
 	}
+
+    public function OptionsAction()
+    {
+        $this->SetView();
+        $this->RenderAdmin($this->_view);
+    }
+
+    public function SavetitleAction()
+    {
+        if (isset($_POST['submit'])) {
+            $post = new PostsModel;
+
+            $post->titre_site = $_POST['titre_site'];
+
+            if ($post->UpdateTitle()) {
+                header("Location: " . HOST_NAME . "admin/options");
+            }
+        }
+    }
 
 	public function DeconnexionAction()
 	{

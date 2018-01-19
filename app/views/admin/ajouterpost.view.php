@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="/admin">Blogy - Panel</a>
+        <a href="/admin"><?= TITLE ?> - Panel</a>
       </li>
       <li class="breadcrumb-item active">Ajouter un post</li>
     </ol>

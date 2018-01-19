@@ -2,7 +2,7 @@
     <div class="container-fluid">
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="<?= HOST_NAME ?>admin">Blogy - Panel</a>
+          <a href="<?= HOST_NAME ?>admin"><?= TITLE ?> - Panel</a>
         </li>
         <li class="breadcrumb-item active">Tableau de bord</li>
       </ol>

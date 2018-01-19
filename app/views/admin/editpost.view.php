@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="/admin">Blogy - Panel</a>
+        <a href="/admin"><?= TITLE ?> - Panel</a>
       </li>
       <li class="breadcrumb-item active">Ajouter un post</li>
     </ol>
@@ -27,6 +27,7 @@
         <input type="text" class="form-control" id="idpost" name="idpost" placeholder="Mon nouveau post!" value="<?= htmlspecialchars($epost['ID']) ?>">
       </div>
       <button type="submit" class="btn btn-primary">Envoyer</button>
+      <div class="separator"></div>
     </form>
   </div>
   

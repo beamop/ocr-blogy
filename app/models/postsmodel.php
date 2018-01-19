@@ -18,7 +18,7 @@ class PostsModel extends AbstractModel
 		'contenu_post',
 		'auteur_post',
 		'date_post'
-		);
+    );
 
 	public static function getPost4() 
 	{
