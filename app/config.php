@@ -13,9 +13,9 @@ ob_start();
  */
 
 define('DB_HOST', '127.0.0.1');
-define('DB_NAME', 'cdpmd-pj3');
-define('DB_USER', 'blogy');
-define('DB_PASSWORD', 'lolo');
+define('DB_NAME', 'blogy-mvc');
+define('DB_USER', 'user');
+define('DB_PASSWORD', 'pass');
 
 /**
  * DTTC!
